@@ -22,4 +22,10 @@ io.on('connection',function(socket) {
     var userName = '';
 })
 
+io.on('connect',function(socket) {
+    console.log(`HIHIHIHI\nConnect : SocketId = ${socket.id}`)
+    var userName = '';
+})
+
+
 module.exports = app;
