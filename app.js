@@ -23,7 +23,7 @@ io.on('connection',function(socket) {
 
     socket.on('send', function(data) {
         console.log('send message client to server')
-        const message_data = JSON.parse(data)
+        const message_data = JSON.parse(JSON.stringify(data))
         const messageContent = message_data.messageContent;
         console.log(`recieve message : ${messageContent}`)
         io.broadcast.to.emit('receive',{messageContent : messageContent});
