@@ -21,5 +21,12 @@ const io = socketio(server,{ path: '/socket.io' });
 io.on('connection',function(socket) {
     console.log(`Connection : SocketId = ${socket.id}`)
 })
+socket.on('send', function(data) {
+    console.log('send message client to server')
+    const message_data = JSON.parse(data)
+    const messageContent = message_data.messageContent;
+    console.log(`recieve message : ${messageContent}`)
+    io.broadcast.to.emit('receive',{messageContent : messageContent});
 
+})
 module.exports = app;
