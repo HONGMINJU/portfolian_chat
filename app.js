@@ -16,7 +16,7 @@ app.use(cors(corsOptions));
 var server = app.listen(3001,()=>{
     console.log('Server is running on port number 3001 (채팅서버)')
 })
-const io = socketio(server,{ path: '/socket.io' });
+const io = socketio(server,{ path: '/socket.io',  cors: { origin: "*" } });
 
 app.use(bodyParser.json({limit : '50mb'}));
 app.use(bodyParser.urlencoded({limit : '50mb', extended: true}));
