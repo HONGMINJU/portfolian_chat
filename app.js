@@ -5,10 +5,10 @@ const bodyParser = require('body-parser');
 const app = express();
 const socketio = require('socket.io');
 const cors = require('cors');
+const whiteList = ['http://3.35.89.48:3000','http://localhost:3000','http://portfolian.site:3000','https://portfolian.site:443','https://portfolian.site','https://3.35.89.48'];
 
 const corsOptions = {
-    origin: "*",
-    // origin: ['http://3.35.89.48:3000','http://localhost:3000','http://portfolian.site:3000','https://portfolian.site:443','https://portfolian.site','https://3.35.89.48'],
+    origin: whiteList,
     credentials:true
 };
 app.use(cors(corsOptions));
@@ -16,7 +16,7 @@ app.use(cors(corsOptions));
 var server = app.listen(3001,()=>{
     console.log('Server is running on port number 3001 (채팅서버)')
 })
-const io = socketio(server,{ path: '/socket.io',  cors: { origin: "*" } });
+const io = socketio(server,{ path: '/socket.io',  cors: { origin: whiteList } });
 
 app.use(bodyParser.json({limit : '50mb'}));
 app.use(bodyParser.urlencoded({limit : '50mb', extended: true}));
