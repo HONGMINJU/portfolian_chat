@@ -7,7 +7,8 @@ const socketio = require('socket.io');
 const cors = require('cors');
 
 const corsOptions = {
-    origin: ['http://3.35.89.48:3000','http://localhost:3000','http://portfolian.site:3000','https://portfolian.site:443','https://portfolian.site','https://3.35.89.48'],
+    origin: "*",
+    // origin: ['http://3.35.89.48:3000','http://localhost:3000','http://portfolian.site:3000','https://portfolian.site:443','https://portfolian.site','https://3.35.89.48'],
     credentials:true
 };
 app.use(cors(corsOptions));
