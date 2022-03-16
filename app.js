@@ -5,6 +5,13 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const socketio = require('socket.io');
+
+const corsOptions = {
+    origin: ['http://3.35.89.48:3000','http://localhost:3000','http://portfolian.site:3000','https://portfolian.site:443','https://portfolian.site','https://3.35.89.48'],
+    credentials:true
+};
+app.use(cors(corsOptions));
+
 var server = app.listen(3001,()=>{
     console.log('Server is running on port number 3001 (채팅서버)')
 })
@@ -26,10 +33,13 @@ io.on('connection',function(socket) {
         const messageContent = message_data.messageContent;
         const roomId = message_data.roomId;
 
-        console.log(`roomId : ${roomId} message : ${messageContent}`)
-        //io.emit('receive',{ "messageContent" : messageContent });
+        console.log(`roomId : ${roomId} message : ${messageContent}`);
         socket.broadcast.to(`${roomId}`).emit('receive', { "messageContent" : messageContent })
     })
+
+    socket.on('disconnect', function () {
+        console.log("One of sockets disconnected from our server.")
+    });
 })
 
 module.exports = app;
