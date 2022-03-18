@@ -4,9 +4,17 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 const socketio = require('socket.io');
+
+const mongoose = require('mongoose');
+const {  MONGO_URI } = process.env;
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Successfully connected to mongodb'))
+  .catch(e => console.error(e));
+
+
 const cors = require('cors');
 const whiteList = ['http://3.35.89.48:3000','http://localhost:3000','http://portfolian.site:3000','https://portfolian.site:443','https://portfolian.site','https://3.35.89.48'];
-
 const corsOptions = {
     origin: whiteList,
     credentials:true
