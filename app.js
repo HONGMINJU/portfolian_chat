@@ -43,7 +43,7 @@ io.on('connection',function(socket) {
         const roomId = message_data.roomId;
 
         console.log(`roomId : ${roomId} message : ${messageContent}`);
-        socket.broadcast.emit('receive', { "messageContent" : messageContent })
+        io.broadcast.emit('receive', { "messageContent" : messageContent })
     });
 
     socket.on('disconnect', function () {
