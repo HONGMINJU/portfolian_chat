@@ -43,8 +43,8 @@ io.on('connection',function(socket) {
         const roomId = message_data.roomId;
 
         console.log(`roomId : ${roomId} message : ${messageContent}`);
-        socket.broadcast.to(`${roomId}`).emit('receive', { "messageContent" : messageContent })
-    })
+        socket.broadcast.emit('receive', { "messageContent" : messageContent })
+    });
 
     socket.on('disconnect', function () {
         console.log("One of sockets disconnected from our server.")
